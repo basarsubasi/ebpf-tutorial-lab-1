@@ -258,7 +258,7 @@ sudo bpftool prog load execve_monitor.o /sys/fs/bpf/execve_monitor autoattach
 Program çalışırken başka bir terminalde komutlar çalıştırarak execve çağrılarını gözlemleyebilirsiniz.
 
 ```bash
-# Trace çıktısını izleyin
+# Trace pipe çıktısını izleyin
 sudo cat /sys/kernel/debug/tracing/trace_pipe
 ```
 
