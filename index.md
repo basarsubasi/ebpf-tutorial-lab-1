@@ -131,7 +131,7 @@ Peki ya çekirdeğin işleyişini değiştirmek, ona yeni özellikler eklemek ve
 ::image-box
 ---
 :src: __static__/kernel-source.png
-:alt: 'Linux çekirdek kaynak kodu ve derleme süreci'
+:alt: 'Linux çekirdek kaynak kodu'
 :max-width: 600px
 ---
 
@@ -155,7 +155,7 @@ Bütün bunlara ilaveten, her yeni iterasyon için çekirdeği yeniden derlemek 
 ::image-box
 ---
 :src: __static__/nvidia-kms.png
-:alt: 'Linux çekirdek kaynak kodu ve derleme süreci'
+:alt: 'Nvidia open gpu kernel modül örneği'
 :max-width: 600px
 ---
 
