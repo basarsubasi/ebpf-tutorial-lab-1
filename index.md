@@ -131,7 +131,7 @@ Peki ya çekirdeğin işleyişini değiştirmek, ona yeni özellikler eklemek ve
 ::image-box
 ---
 :src: __static__/kernel-source.png
-:alt: 'Linux çekirdek kaynak kodu'
+:alt: 'Linux çekirdeğinin kaynak kodu'
 :max-width: 600px
 ---
 
