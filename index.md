@@ -226,6 +226,8 @@ clang -O2 -target bpf -c execve_monitor.c -o execve_monitor.o
 kind: warning
 ---
 
+Lab ortamındaki VM'lerde `bpftool` halihazırda mevcut olduğu için bpf işlemlerimizi `bpftool` ile yapacağız.
+
 `bpftool`, eBPF programlarını ve objelerini (maps, programs, links vb.) yönetmek için kullanılan resmi bir komut satırı aracıdır. Linux çekirdeği ile birlikte gelir ve eBPF programlarını yükleme, listeleme, denetleme ve hata ayıklama için kullanılır.
 
 **Temel kullanım alanları:**
@@ -235,6 +237,8 @@ kind: warning
 - eBPF objelerini dosya sistemine pin'leme
 
 `bpftool` sayesinde eBPF programlarını manuel olarak yönetebilir ve sistemdeki eBPF aktivitesini izleyebiliriz.
+
+
 ::
 
 Programı yüklemek ve otomatik olarak yerine takmak için:
@@ -446,6 +450,20 @@ slides:
 - image: __static__/numbers-xdp-1.png
 ---
 ::
+
+Yukarıda, dünyadaki bütün web sitelerinin yaklaşık 20.9%'unun DDoS saldırılarına karşı korunmak için kullandığı Cloudflare'ın 2020 yılında yayınladığı bir çalışmanın sonuçlarını görüyoruz.
+
+İlk görseldeki sonuçlar, geleneksel yöntemlerle (iptables gibi) yapılan paket filtreleme işlemlerinin performansını gösteriyor. 
+
+iptables, kendi paket filtreleme sınırlarını PREROUTING zincirinde zorlamasına rağmen ortalama 1.7 milyon paket/saniye (1.7 Mpps) seviyelerinde kalıyor.
+
+İkinci görselde ise XDP kullanılarak yapılan paket filtreleme işlemlerinin performansını görüyoruz. XDP, çekirdeğin çok daha erken bir noktasında çalıştığı için, aynı donanım üzerinde ortalama 10 milyon paket/saniye (10 Mpps) seviyelerine kadar çıkabiliyor.
+
+Bu sonuçlar, XDP'nin iptables'a kıyasla yaklaşık 6 kat daha yüksek performans sunduğunu gösteriyor. Bu da, yüksek trafikli ağlarda paket filtreleme işlemleri için XDP'nin iptables'a kıyasla ideal bir çözüm olduğunu ortaya koyuyor.
+
+Cloudflare, Meta veya Netflix gibi hyperscaler şirketlerin yanı sıra Kubernetes ekosisteminde de Cilium gibi eBPF/XDP tabanlı çözümler giderek daha popüler hale geliyor.
+
+
 
 
 
