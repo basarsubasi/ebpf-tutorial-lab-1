@@ -459,7 +459,9 @@ slides:
 
 Yukarıda, dünyadaki bütün web sitelerinin yaklaşık 20.9%'unun [[7]](#ref-7) DDoS saldırılarına karşı korunmak için kullandığı Cloudflare'ın 2020 yılında yayınladığı bir çalışmanın [[8]](#ref-8) sonuçlarını görüyoruz.
 
-İlk görseldeki sonuçlar, geleneksel yöntemlerle (iptables gibi) yapılan paket filtreleme işlemlerinin performansını gösteriyor. 
+İlk görseldeki sonuçlar, iptables ve nftables kullanılarak yapılan paket filtreleme işlemlerinin performansını gösteriyor.
+
+(TC BPF sonuçları da benzer seviyelerde, fakat kapsamımıza dahil olamdığı için onu şimdilik görmezden gelebiliriz) 
 
 iptables, kendi paket filtreleme sınırlarını PREROUTING zincirinde zorlamasına rağmen ortalama 1.7 milyon paket/saniye (1.7 Mpps) seviyelerinde kalıyor.
 
