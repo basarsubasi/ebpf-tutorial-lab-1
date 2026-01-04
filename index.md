@@ -175,19 +175,85 @@ Bu özellikleri sayesinde eBPF, bize çekirdeği değiştirme konusunda geleneks
 
 ## eBPF Programları
 
-
-::slide-show
----
-slides:
-- image: __static__/arch.png
-- image: __static__/hook-overview.png
----
-::
-
-
 eBPF programları, eBPF sanal makinesi üzerinde çalışan küçük, verimli ve güvenli programlardır. Bu programlar, sistem çağrıları dahil çekirdeğin belirli noktalarına bağlanabilir ve bu noktalarda çalıştırılabilirler. 
 
 eBPF programları direkt çekirdeğin içine gömülü oldukları için, klasik userspace programlarına kıyasla çok daha yüksek performans sunar ve sistem kaynaklarını daha verimli bir şekilde kullanırlar.
+
+::details-box
+---
+:summary: Alıştırma 2 -> eBPF ile execve Çağrılarını İzlemek
+---
+
+Bu alıştırmada, eBPF kullanarak `execve` sistem çağrısını izleyen bir program yazacağız. Bu program, hangi komutların çalıştırıldığını ve bu komutları çalıştıran programın ne olduğunu görmemizi sağlayacak.
+
+Aşağıdaki eBPF kodunu `execve_monitor.c` olarak kaydedip derleyin:
+
+```c
+#include "vmlinux.h"
+#include <bpf/bpf_helpers.h>
+
+char LICENSE[] SEC("license") = "GPL";
+
+SEC("tp/syscalls/sys_enter_execve")
+int handle_execve(struct trace_event_raw_sys_enter *ctx) {
+    __u64 pid_tgid = bpf_get_current_pid_tgid();
+    __u32 pid = pid_tgid >> 32;
+    char comm[16];
+    char filename[256];
+    
+    // Process adını al (execve'yi çağıran program)
+    bpf_get_current_comm(&comm, sizeof(comm));
+    
+    // Filename parametresini oku (çalıştırılacak program)
+    bpf_probe_read_user_str(&filename, sizeof(filename), (void *)ctx->args[0]);
+    
+    // Trace pipe'a yazdır - hem çağıran hem de çalıştırılacak programı göster
+    bpf_printk("\n'%s' programi \n '%s' programini calistirdi. \n PID: %d", comm, filename, pid );
+    
+    return 0;
+}
+```
+
+Programı derlemek, yüklemek ve yerine takmak için:
+
+```bash
+# eBPF programını derleyin
+clang -O2 -target bpf -c execve_monitor.c -o execve_monitor.o
+
+# eBPF programını yükleyin ve otomatik olarak yerine takın
+sudo bpftool prog load execve_monitor.o /sys/fs/bpf/execve_monitor autoattach
+```
+
+Program çalışırken başka bir terminalde komutlar çalıştırarak execve çağrılarını gözlemleyebilirsiniz.
+
+```bash
+# Trace çıktısını izleyin
+sudo cat /sys/kernel/debug/tracing/trace_pipe
+```
+
+Programı silmek/durdurmak için:
+
+```sh
+sudo rm /sys/fs/bpf/execve_monitor
+```
+
+**Burada ne oluyor?**
+
+::image-box
+---
+:src: __static__/bpf-location.png
+:max-width: 600px
+---
+
+_eBPF programımızın çekirdek içindeki lokasyonu_
+::
+
+
+Bu program çalıştırıldığında, onu çalıştıran **process**'i ve çalıştırılmaya çalışılan programı PID'si ile berabler görebileceksiniz. Örneğin, bir terminal açtığınızda veya bir komut çalıştırdığınızda, bu eBPF programı bu olayı yakalayacak ve olay ile ilgili detayları konsolda görüntüleyecektir.
+
+Bu basit örnek, bize eBPF'in temel işlevini canlı bir şekilde gösteriyor, çekirdeği yeniden derlemeden, sistemde yapılan işlemleri sistem çağrısı seviyesinde, direkt olarak çekirdeğin içinden izleyebiliyoruz!
+::
+
 
 
 
