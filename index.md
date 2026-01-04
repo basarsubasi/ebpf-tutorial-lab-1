@@ -121,7 +121,7 @@ Tahmininiz ne kadar doğru çıktı? Bu kadar basit bir işlem için bile kernel
 
 Çekirdeğin sistem için olan önemini beraber gördük. Başta belirttiğimiz gibi, çekirdek de aslında yukarıda yazdığımız hello world programı gibi kaynak kodu olan ve derlenen bir programdır.
 
-Peki ya çekirdeğin işleyişini değiştirmek, ona yeni özellikler eklemek veya bir güvenlik açığını kapatmak istersek bunu nasıl yaparız?
+Peki ya çekirdeğin işleyişini değiştirmek, ona yeni özellikler eklemek veya bir güvenlik açığını kapatmak istersek bunu nasıl yapabiliriz?
 
 ::details-box
 ---
