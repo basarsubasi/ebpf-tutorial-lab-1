@@ -32,7 +32,7 @@ playground:
 
 Bu lab'de kaputu biraz aralayıp, altında çalışan mekanizmalara göz attıktan sonra, nispeten yeni (fakat etkili) bir teknoloji olan eBPF'ten ve eBPF'in çekirdek ekosistemine kattıklarından bahsedeceğiz.
 
-Lab ortamına özel hazırlanmış VM'lere "Start" butonuna tıklayarak erişebilirsiniz. VM'ler için IDE ve Terminaller de bu şekilde açılacaktır.
+Lab ortamına özel hazırlanmış VM'lere "Start" butonuna tıklayarak erişebilirsiniz. VM'ler için IDE ve Terminal'ler de bu şekilde açılacaktır.
 
 ## Çekirdek (Kernel) nedir?
 
@@ -181,10 +181,10 @@ eBPF programları direkt çekirdeğin içine gömülü oldukları için, klasik 
 
 ::details-box
 ---
-:summary: Alıştırma 2 -> eBPF ile execve Çağrılarını İzlemek
+:summary: Alıştırma 2 -> eBPF ile execve() Çağrılarını İzlemek
 ---
 
-Bu alıştırmada, eBPF kullanarak `execve` sistem çağrısını izleyen bir program yazacağız. Bu program, hangi komutların çalıştırıldığını ve bu komutları çalıştıran programın ne olduğunu görmemizi sağlayacak.
+Bu alıştırmada, eBPF kullanarak `execve()` sistem çağrısını izleyen bir program yazacağız. Bu program, hangi komutların çalıştırıldığını ve bu komutları çalıştıran programın ne olduğunu görmemizi sağlayacak.
 
 Aşağıdaki eBPF kodunu `execve_monitor.c` olarak kaydedip derleyin:
 
@@ -214,12 +214,32 @@ int handle_execve(struct trace_event_raw_sys_enter *ctx) {
 }
 ```
 
-Programı derlemek, yüklemek ve yerine takmak için:
+Programı derlemek için:
 
 ```bash
 # eBPF programını derleyin
 clang -O2 -target bpf -c execve_monitor.c -o execve_monitor.o
+```
 
+::remark-box
+---
+kind: warning
+---
+
+`bpftool`, eBPF programlarını ve objelerini (maps, programs, links vb.) yönetmek için kullanılan resmi bir komut satırı aracıdır. Linux çekirdeği ile birlikte gelir ve eBPF programlarını yükleme, listeleme, denetleme ve hata ayıklama için kullanılır.
+
+**Temel kullanım alanları:**
+- eBPF programlarını yükleme ve kaldırma
+- Yüklenmiş eBPF programlarını listeleme ve inceleme
+- eBPF programlarını çekirdeğin çeşitli hook noktalarına takma (attach)
+- eBPF objelerini dosya sistemine pin'leme
+
+`bpftool` sayesinde eBPF programlarını manuel olarak yönetebilir ve sistemdeki eBPF aktivitesini izleyebiliriz.
+::
+
+Programı yüklemek ve otomatik olarak yerine takmak için:
+
+```bash
 # eBPF programını yükleyin ve otomatik olarak yerine takın
 sudo bpftool prog load execve_monitor.o /sys/fs/bpf/execve_monitor autoattach
 ```
@@ -241,11 +261,12 @@ sudo rm /sys/fs/bpf/execve_monitor
 
 ::image-box
 ---
-:src: __static__/bpf-location.png
+:src: __static__/bpflocation1.jpg
 :max-width: 600px
 ---
 
-_eBPF programımızın çekirdek içindeki lokasyonu_
+_eBPF programımızın çekirdek içindeki lokasyonu
+Kaynak: https://ebpf.io/_
 ::
 
 
@@ -396,9 +417,35 @@ sudo bpftool net detach xdpgeneric dev eth0
 # Programı kaldırın
 sudo rm /sys/fs/bpf/xdp_drop
 ```
+
+**Burada ne oluyor?**
+::image-box
+---
+:src: __static__/xdp.png
+:alt: 'XDP programının çekirdek içindeki konumu'
+:max-width: 600px
+---
+
+_XDP'nin çalışabileceği yerler_
+::
+
+Yukardaki diyagramda da görebileceğiniz gibi, XDP programları modlarına göre (skb/generic, Native veya Offload) çekirdeğin farklı noktalarında (veya direkt olarak Ağ kartının üzerinde) çalışabilirler, bir XDP programı ne kadar erken çalışırsa, o kadar yüksek performans sunar.
+
+ Lab VM'lerinin sanal NIC'leri diğer modları desteklemediği için XDP programımız bu modlar arasında en yavaş mod olan `skb/generic` modunda çalışıyor.
 ::
 
 
+## XDP ve iptables Performans Karşılaştırması
+
+Her iki yöntemi de kullanarak belirli bir IP adresinden gelen paketleri engelledik. İki yöntem de aynı işlevi yerine getiriyor gibi görünse de, işler performans açısından oldukça farklı.
+
+::slide-show
+---
+slides:
+- image: __static__/numbers-noxdp.png
+- image: __static__/numbers-xdp-1.png
+---
+::
 
 
 
