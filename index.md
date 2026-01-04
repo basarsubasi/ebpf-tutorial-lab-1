@@ -43,7 +43,7 @@ Lab ortamına özel hazırlanmış VM'lere "Start" butonuna tıklayarak erişebi
 :max-width: 600px
 ---
 
-Resmin Kaynağı: https://en.wikipedia.org/wiki/Kernel_(operating_system)#/media/File:Kernel_Layout.svg
+(Kaynak: https://en.wikipedia.org/wiki/Kernel_(operating_system)#/media/File:Kernel_Layout.svg)
 ::
 
 
@@ -165,6 +165,29 @@ Fakat çekirdek modüllerinin de bazı dezavantajları vardır. Bu dezavantajlar
 
 
 ## eBPF
+
+eBPF, çekirdeğin direkt olarak içerisinde bulunan ve çekirdeği yeniden derlemeye gerek kalmadan, çekirdeğin işleyişini değiştirmemize olanak sağlayan bir **çekirdek içi sanal makinedir** (in-kernel virtual machine).
+
+eBPF ayrıca içindeki **Verifier** (doğrulayıcı) sayesinde, yüklenen eBPF programlarının güvenli olduğunu ve çekirdeği çökertmeyeceğini garanti eder.
+
+Bu özellikleri sayesinde eBPF, bize çekirdeği değiştirme konusunda geleneksel yöntemelere kıyasla daha hızlı, esnek ve güvenli bir yol sunar.
+
+
+## eBPF Programları
+
+
+::slide-show
+---
+slides:
+- image: __static__/arch.png
+- image: __static__/hook-overview.png
+---
+::
+
+
+eBPF programları, eBPF sanal makinesi üzerinde çalışan küçük, verimli ve güvenli programlardır. Bu programlar, sistem çağrıları dahil çekirdeğin belirli noktalarına bağlanabilir ve bu noktalarda çalıştırılabilirler. 
+
+eBPF programları direkt çekirdeğin içine gömülü oldukları için, klasik userspace programlarına kıyasla çok daha yüksek performans sunar ve sistem kaynaklarını daha verimli bir şekilde kullanırlar.
 
 
 
