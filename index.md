@@ -43,7 +43,7 @@ Lab ortamına özel hazırlanmış VM'lere "Start" butonuna tıklayarak erişebi
 :max-width: 600px
 ---
 
-(Kaynak: https://en.wikipedia.org/wiki/Kernel_(operating_system)#/media/File:Kernel_Layout.svg)
+(Kaynak: [[1]](#ref-1))
 ::
 
 
@@ -128,7 +128,7 @@ Peki ya çekirdeğin işleyişini değiştirmek, ona yeni özellikler eklemek ve
 :max-width: 600px
 ---
 
-_Linux çekirdek kaynak kodu_
+_Linux çekirdek kaynak kodu [[3]](#ref-3)_
 ::
 
 
@@ -152,7 +152,7 @@ Bütün bunlara ilaveten, her yeni iterasyon için çekirdeği yeniden derlemek 
 :max-width: 600px
 ---
 
-_Çekirdek modülü örneği_
+_Çekirdek modülü örneği [[4]](#ref-4)_
 ::
 
 
@@ -269,8 +269,7 @@ sudo rm /sys/fs/bpf/execve_monitor
 :max-width: 600px
 ---
 
-_eBPF programımızın çekirdek içindeki lokasyonu
-Kaynak: https://ebpf.io/_
+_eBPF programımızın çekirdek içindeki lokasyonu [[5]](#ref-5)_
 ::
 
 
@@ -331,7 +330,7 @@ _Koyduğumuz iptables kuralının çekirdek içindeki konumu_
 :max-width: 600px
 ---
 
- iptables ile ilgili daha detaylı bilgi için yukarıdaki görselin de kaynağı olan https://iximiuz.com/en/posts/laymans-iptables-101/ bloguna göz atabilirsiniz.
+ iptables ile ilgili daha detaylı bilgi ve yukarıdaki gibi iyi çizilmiş diyagramlar için bu platformun da yaratıcısı olan Ivan'ın Layman's iptables[[6]](#ref-6) bloguna göz atmanızı öneririm.
 ::
 
 ::
@@ -451,7 +450,7 @@ slides:
 ---
 ::
 
-Yukarıda, dünyadaki bütün web sitelerinin yaklaşık 20.9%'unun DDoS saldırılarına karşı korunmak için kullandığı Cloudflare'ın 2020 yılında yayınladığı bir çalışmanın sonuçlarını görüyoruz.
+Yukarıda, dünyadaki bütün web sitelerinin yaklaşık 20.9%'unun [[7]](#ref-7) DDoS saldırılarına karşı korunmak için kullandığı Cloudflare'ın 2020 yılında yayınladığı bir çalışmanın [[8]](#ref-8) sonuçlarını görüyoruz.
 
 İlk görseldeki sonuçlar, geleneksel yöntemlerle (iptables gibi) yapılan paket filtreleme işlemlerinin performansını gösteriyor. 
 
@@ -466,14 +465,14 @@ Cloudflare, Meta veya Netflix gibi hyperscaler şirketlerin yanı sıra Kubernet
 
 ## Kaynakça
 
-- https://en.wikipedia.org/wiki/Kernel_(operating_system)
-- https://en.wikipedia.org/wiki/System_call
-- https://github.com/torvalds/linux
-- https://github.com/NVIDIA/open-gpu-kernel-modules
-- https://ebpf.io/
-- https://iximiuz.com/en/posts/laymans-iptables-101/
-- https://w3techs.com/technologies/details/cn-cloudflare
-- https://blog.cloudflare.com/how-to-drop-10-million-packets/
+1. <a id="ref-1"></a> [Wikipedia - Kernel (operating system)](https://en.wikipedia.org/wiki/Kernel_(operating_system))
+2. <a id="ref-2"></a> [Wikipedia - System call](https://en.wikipedia.org/wiki/System_call)
+3. <a id="ref-3"></a> [Linux Kernel Source Code](https://github.com/torvalds/linux)
+4. <a id="ref-4"></a> [NVIDIA Open GPU Kernel Modules](https://github.com/NVIDIA/open-gpu-kernel-modules)
+5. <a id="ref-5"></a> [eBPF - Introduction to eBPF](https://ebpf.io/)
+6. <a id="ref-6"></a> [ Ivan's Layman's iptables Blogpost](https://iximiuz.com/en/posts/laymans-iptables-101/)
+7. <a id="ref-7"></a> [W3Techs - Usage Statistics of Cloudflare](https://w3techs.com/technologies/details/cn-cloudflare)
+8. <a id="ref-8"></a> [Cloudflare Blog - How to Drop 10 Million Packets](https://blog.cloudflare.com/how-to-drop-10-million-packets/)
 
 
 
