@@ -66,7 +66,7 @@ Bu tür programlar donanım kaynaklarına (CPU, RAM, disk, network kartları vb.
 :max-width: 600px
 ---
 
-_Sistem çağrısı örneği_
+_Basitleştirilmiş sistem çağrısı örneği_
 ::
 
 
