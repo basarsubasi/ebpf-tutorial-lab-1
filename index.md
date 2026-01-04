@@ -464,6 +464,17 @@ Bu sonuçlar, XDP'nin iptables'a kıyasla yaklaşık 6 kat daha yüksek performa
 Cloudflare, Meta veya Netflix gibi hyperscaler şirketlerin yanı sıra Kubernetes ekosisteminde de Cilium gibi eBPF/XDP tabanlı çözümler giderek daha popüler hale geliyor.
 
 
+## Kaynakça
+
+- https://en.wikipedia.org/wiki/Kernel_(operating_system)
+- https://en.wikipedia.org/wiki/System_call
+- https://github.com/torvalds/linux
+- https://github.com/NVIDIA/open-gpu-kernel-modules
+- https://ebpf.io/
+- https://iximiuz.com/en/posts/laymans-iptables-101/
+- https://w3techs.com/technologies/details/cn-cloudflare
+- https://blog.cloudflare.com/how-to-drop-10-million-packets/
+
 
 
 
