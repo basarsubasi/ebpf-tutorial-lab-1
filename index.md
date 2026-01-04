@@ -87,9 +87,13 @@ Sizce ekrana "Hello, World!" yazdıran basit bir programın kaç tane sistem ça
 
 ```c
 #include <stdio.h>
+
 int main() {
+
   printf("Hello, World!\n");
+
   return 0;
+
 }
 ```
 
@@ -300,14 +304,14 @@ Bu alıştırmada, geleneksel bir ağ filtreleme aracı olan `iptables` kullanar
 **172.16.0.101 IP adresinden gelen paketleri engellemek için:**
 
 ```bash
-# Gelen paketleri engellemek için INPUT chain'e kural ekleyin
+# Gelen paketleri engellemek için iptables'ın INPUT chain'ine gerekli kuralı ekleyin
 sudo iptables -A INPUT -s 172.16.0.101 -j DROP
 ```
 **Test etmek için:**
 
 ```bash
-# box-2'den (172.16.0.101) 
-ping 172.16.0.100 (box-1'in IP adresi)
+# box-02'den (172.16.0.102) 
+ping 172.16.0.101
 ```
 
 Kural aktif olduğunda ping paketleri hiçbir yanıt almayacaktır.
