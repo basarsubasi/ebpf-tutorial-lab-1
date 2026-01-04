@@ -255,6 +255,151 @@ Bu basit örnek, bize eBPF'in temel işlevini canlı bir şekilde gösteriyor, �
 ::
 
 
+## XDP
+
+eBPF'in en yaygın ve efektif kullanım alanlarından biri de XDP (eXpress Data Path) programları ile ağ paketlerini işleme yeteneğidir. XDP, ağ paketlerini çekirdek seviyesinde işleyerek, `iptables` gibi araçlara kıyasla çok daha yüksek performans sunar.
+
+::details-box
+---
+:summary: Alıştırma 3 ->  iptables ile Paket Filtreleme
+---
+
+Bu alıştırmada, geleneksel bir ağ filtreleme aracı olan `iptables` kullanarak belirli bir IP adresinden gelen paketleri nasıl engelleyeceğimizi göreceğiz. İlerleyen bölümlerde bunu eBPF/XDP ile karşılaştıracağız.
+
+**172.16.0.101 IP adresinden gelen paketleri engellemek için:**
+
+```bash
+# Gelen paketleri engellemek için INPUT chain'e kural ekleyin
+sudo iptables -A INPUT -s 172.16.0.101 -j DROP
+```
+**Test etmek için:**
+
+```bash
+# box-2'den (172.16.0.101) 
+ping 172.16.0.100 (box-1'in IP adresi)
+```
+
+Kural aktif olduğunda ping paketleri hiçbir yanıt almayacaktır.
+
+**Kuralı kaldırmak için:**
+
+```bash
+sudo iptables -D INPUT 1
+```
+
+::image-box
+---
+:src: __static__/netfilter2.png
+:alt: 'Netfilter ve iptables katmanları'
+:max-width: 600px
+---
+
+_Koyduğumuz iptables kuralının çekirdek içindeki konumu_
+::
+
+ İptables, çekirdeğin **Netfilter** adlı modülünü kullanarak ağ trafiğini kontrol eder, iptables aslında çekirdeğin içindeki bu modülün userspace arayüzüdür. Asıl paket filtreleme işlemi netfilter katmanında, netfilter hook'ları aracılığıyla gerçekleşir.
+
+
+::image-box
+---
+:src: __static__/iptables-stages-white.png
+:max-width: 600px
+---
+
+ iptables ile ilgili daha detaylı bilgi için yukarıdaki görselin de kaynağı olan https://iximiuz.com/en/posts/laymans-iptables-101/ bloguna göz atabilirsiniz.
+::
+
+::
+
+::details-box
+---
+:summary: Alıştırma 4 -> XDP ile Paket Filtreleme
+---
+
+Bu alıştırmada, bu sefer 172.16.0.102 IP adresinden gelen paketleri iptables yerine eBPF/XDP kullanarak engelleyeceğiz.
+
+Aşağıdaki XDP kodunu `xdp_drop.c` olarak kaydedin:
+
+```c
+#include "vmlinux.h"
+#include <bpf/bpf_helpers.h>
+#include <bpf/bpf_endian.h>
+#include "xdp_helpers.h"
+
+char LICENSE[] SEC("license") = "GPL";
+
+// Engellenecek IP adresi: 172.16.0.102
+#define BLOCKED_IP 0xAC100066  // 172.16.0.102'nin hexadecimal karşılığı
+
+SEC("xdp")
+int xdp_drop_ip(struct xdp_md *ctx) {
+    void *data_end = (void *)(long)ctx->data_end;
+    void *data = (void *)(long)ctx->data;
+    
+    // Ethernet header
+    struct ethhdr *eth = data;
+    if ((void *)(eth + 1) > data_end)
+        return XDP_ABORTED; // Paket geçersizse direkt olarak paketi düşür ve bunu belirt 
+    
+    // Sadece IP paketlerini kontrol et
+    if (bpf_ntohs(eth->h_proto) != ETH_P_IP)
+        return XDP_PASS; // IP paketi değilse geçir
+    
+    // IP header
+    struct iphdr *ip = (void *)(eth + 1);
+    if ((void *)(ip + 1) > data_end)
+        return XDP_ABORTED; // Paket geçersizse direkt olarak paketi düşür ve bunu belirt 
+    
+    // Kaynak IP adresini kontrol et
+    if (bpf_ntohl(ip->saddr) == BLOCKED_IP) {
+        bpf_printk("\n XDP: Paket engellendi! \n Kaynak IP: 172.16.0.102");
+        return XDP_DROP;  // Paketi düşür
+    }
+    
+    return XDP_PASS;  // Diğer paketleri geçir
+}
+```
+
+Programı derlemek ve yüklemek için:
+
+```bash
+# XDP programını derleyin
+clang -O2 -target bpf -c xdp_drop.c -o xdp_drop.o
+
+# Programı yükleyin
+sudo bpftool prog load xdp_drop.o /sys/fs/bpf/xdp_drop
+
+# Programı network interface'e bağlayın
+sudo bpftool net attach xdpgeneric pinned /sys/fs/bpf/xdp_drop dev eth0
+
+# Programın hazır olup olmadığını kontrol edin
+sudo bpftool net list
+```
+
+**Test etmek için:**
+
+```bash
+# box-02'den (172.16.0.102) ping atın
+ping 172.16.0.101
+```
+```sh
+# XDP loglarını izlemek için
+sudo cat /sys/kernel/debug/tracing/trace_pipe
+```
+
+**Programı kaldırmak için:**
+
+```bash
+# XDP programını interface'den ayırın
+sudo bpftool net detach xdpgeneric dev eth0
+
+# Programı kaldırın
+sudo rm /sys/fs/bpf/xdp_drop
+```
+::
+
+
+
 
 
 
