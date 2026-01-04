@@ -35,15 +35,17 @@ Bu lab'de kaputu biraz aralayıp, altında çalışan mekanizmalara göz attıkt
 
 ## Çekirdek (Kernel) nedir?
 
-![Kernel Layout](__static__/Kernel_Layout.png)
-
-::remark-box
+::image-box
 ---
-kind: info
+:src: __static__/Kernel_Layout.png
+:alt: 'Çekirdek (Kernel) katmanları şeması'
+:max-width: 600px
 ---
 
 Resmin Kaynağı: https://en.wikipedia.org/wiki/Kernel_(operating_system)#/media/File:Kernel_Layout.svg
 ::
+
+
 
 İşletim Sistemi çekirdeği, İşletim Sisteminin merkezinde olup sistemin tüm noktalarına tam ve doğrudan erişim hakkına sahip olan ve sistemin içindeki diğer programları koordine eden bir bilgisayar programıdır. 
 
@@ -56,9 +58,17 @@ Bu tür programlar donanım kaynaklarına (CPU, RAM, disk, network kartları vb.
 ## Sistem Çağrıları (Syscalls)
 
 
-![Kernel Layout](__static__/Kernel_Layout.png)
+::image-box
+---
+:src: __static__/syscall-example.png
+:alt: 'Kullanıcıdan çekirdeğe sistem çağrısı örneği'
+:max-width: 600px
+---
+
+_Sistem çağrısı örneği._
+::
 
 
 Yukarıda belirttiğimiz gibi, kullanıcı alanı programları donanım kaynaklarına doğrudan erişemezler. Bunun yerine, çekirdek aracılığıyla bu kaynaklara erişirler. Bu erişim işlemi, sistem çağrıları (syscalls) adı verilen özel işlevler aracılığıyla gerçekleştirilir.
 
-Sistem çağrıları, kullanıcı alanı programlarının çekirdek ile iletişim kurmasını sağlar. Örneğin, bir dosya açmak, bir ağ bağlantısı kurmak veya bellek ayırmak gibi işlemler için sistem çağrıları kullanılır.
+Sistem çağrıları, kullanıcı alanı programlarının çekirdek ile iletişim kurmasını sağlar. Örneğin, bir dosya açmak, bir ağ bağlantısı kurmak veya uygulamayı belleğe yüklemek gibi işlemler için sistem çağrıları kullanılır.
