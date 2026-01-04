@@ -79,7 +79,7 @@ Sistem çağrıları, kullanıcı alanı programlarının çekirdek ile iletişi
 :summary: Alıştırma 1 -> `strace`  kullanarak sistem çağrılarını sayma
 ---
 
-`strace`, bir programın yaptığı sistem çağrılarını izlemek için kullanılan bir araçtır.
+`strace` bir programın yaptığı sistem çağrılarını izlemek için kullandığımız bir araçtır.
 
 Sizce ekrana "Hello, World!" yazdıran basit bir programın kaç tane sistem çağrısı yapması gerekir?
 
@@ -93,7 +93,7 @@ int main() {
 }
 ```
 
-clang kullanarak derlemek için:
+Programı `clang` kullanarak derlemek için:
 
 ```bash
 clang -c hello_world.c -o hello_world
@@ -105,7 +105,14 @@ Programınızı derledikten ve tahmininizi yaptıktan sonra, aşağıdaki komutu
 strace -c ./hello_world
 ```
 
-Tahmininiz ne kadar doğru çıktı? Bu kadar basit bir işlem için bile kernel ile ne kadar çok etkileşime geçtiyoruz, ama bunun farkında değiliz!
+::details-box
+---
+:summary: Çıktıyı gördükten sonra buraya tıklayın
+---
+
+Tahmininiz ne kadar doğru çıktı? Bu kadar basit bir işlem için bile kernel ile ne kadar çok etkileşime geçtiyoruz, ama bunun farkında bile değiliz!
+::
+
 ::
 
 
