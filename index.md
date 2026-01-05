@@ -54,6 +54,16 @@ Bununla birlikte, çekirdek donanım ile yazılım arasında bir köprü görevi
 
 Çekirdekğin kendisi hariç bilgisayarda çalışan tüm programlara kullanıcı alanı (userspace) programları denir. Günlük hayatta somut olarak etkileşime geçtiğimiz çoğu uygulama (web tarayıcıları, ofis programları, oyunlar vb.) kullanıcı alanı (userspace) programlarıdır.
 
+::image-box
+---
+:src: __static__/arch.png
+:alt: 'İşletim sistemi mimarisi - userspace ve kernel space'
+:max-width: 600px
+---
+
+_(Kaynak: [[5]](#ref-5))_
+::
+
 Bu tür programlar donanım kaynaklarına (CPU, RAM, disk, network kartları vb.) erişmek istediğinde, bunu doğrudan yapamaz. Bunun yerine, çekirdek aracılığıyla bu kaynaklara erişir. Çekirdek, donanım kaynaklarını yönetir ve uygulamaların bu kaynaklara erişimini düzenler.
 
 ## Sistem Çağrıları (Syscalls)
@@ -185,6 +195,16 @@ Bu özellikleri sayesinde eBPF, bize çekirdeği değiştirme konusunda geleneks
 
 
 ## eBPF Programları
+
+::image-box
+---
+:src: __static__/hook-overview.png
+:max-width: 600px
+---
+
+_eBPF hook noktaları
+[[5]](#ref-5)_
+::
 
 eBPF programları, eBPF sanal makinesi üzerinde çalışan küçük, verimli ve güvenli programlardır. Bu programlar, sistem çağrıları dahil çekirdeğin belirli noktalarına bağlanabilir ve bu noktalarda çalıştırılabilirler. 
 
