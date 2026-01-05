@@ -296,7 +296,7 @@ Lab ortamındaki VM'lerde `bpftool` halihazırda mevcut olduğu için bpf işlem
 **Programı yüklemek ve otomatik olarak yerine takmak için:**
 
 ```bash
-# eBPF programını yükleyin ve otomatik olarak yerine takın
+# eBPF programını yükleyin (load) ve autoattach kullanarak otomatik olarak yerine takın
 sudo bpftool prog load execve_monitor.o /sys/fs/bpf/execve_monitor autoattach
 ```
 
@@ -444,13 +444,13 @@ int xdp_drop_ip(struct xdp_md *ctx) {
 **Programı derlemek ve yüklemek için:**
 
 ```bash
-# XDP programını derleyin
+# XDP programını derleyin (compile)
 clang -O2 -target bpf -c xdp_drop.c -o xdp_drop.o
 
-# Programı yükleyin
+# Programı yükleyin (load)
 sudo bpftool prog load xdp_drop.o /sys/fs/bpf/xdp_drop
 
-# Programı network interface'e bağlayın
+# Programı network interface'e takın (attach)
 sudo bpftool net attach xdpgeneric pinned /sys/fs/bpf/xdp_drop dev eth0
 
 # Programın hazır olup olmadığını kontrol edin
