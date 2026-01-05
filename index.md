@@ -156,7 +156,9 @@ _Linux çekirdek kaynak kodu [[3]](#ref-3)_
 
 Değiştirmek istediğimiz çekirdeğin Linux olduğunu varsayarsak, çekirdeğin kaynak kodunu indirip, istediğimiz değişiklikleri yaptıktan sonra çekirdeği yeniden derleyebiliriz.
 
-Fakat bu yöntem için yaptığımız değişikliklerin çekirdeğin geri kalanıyla uyumlu olduğuna ve sistemin kararlı bir şekilde çalışmaya devam ettiğine emin olmamız gerekir, zira çekirdekteki hatalar **kernel panic**'e sebep olur ve tüm sistem çekirdek ile beraber çöker.
+Fakat bu yöntem için yaptığımız değişikliklerin çekirdeğin geri kalanıyla uyumlu olduğuna ve sistemin kararlı bir şekilde çalışmaya devam ettiğine emin olmamız gerekir, zira çekirdekteki ın **kernel panic**'e sebep olma ihtimali vardır.
+
+Çekirdeğin paniklediği bir senaryoda tüm sistem de çekirdek ile beraber çöker.
 
 Bütün bunlara ilaveten, her yeni iterasyon için çekirdeği yeniden derlemek ve sistemi yeniden başlatmak gerektiği için bu yöntem oldukça zahmetlidir.
 ::
