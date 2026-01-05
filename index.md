@@ -420,7 +420,7 @@ int xdp_drop_ip(struct xdp_md *ctx) {
 }
 ```
 
-Programı derlemek ve yüklemek için:
+**Programı derlemek ve yüklemek için:**
 
 ```bash
 # XDP programını derleyin
