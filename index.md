@@ -301,11 +301,11 @@ eBPF'in en yaygın ve efektif kullanım alanlarından biri de XDP (eXpress Data 
 
 Bu alıştırmada, geleneksel bir ağ filtreleme aracı olan `iptables` kullanarak belirli bir IP adresinden gelen paketleri nasıl engelleyeceğimizi göreceğiz. İlerleyen bölümlerde bunu eBPF/XDP ile karşılaştıracağız.
 
-**172.16.0.101 IP adresinden gelen paketleri engellemek için:**
+**172.16.0.102 IP adresinden gelen paketleri engellemek için:**
 
 ```bash
 # Gelen paketleri engellemek için iptables'ın INPUT chain'ine gerekli kuralı ekleyin
-sudo iptables -A INPUT -s 172.16.0.101 -j DROP
+sudo iptables -A INPUT -s 172.16.0.102 -j DROP
 ```
 **Test etmek için:**
 
