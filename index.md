@@ -164,7 +164,7 @@ _Linux çekirdek kaynak kodu [[3]](#ref-3)_
 
 Değiştirmek istediğimiz çekirdeğin Linux olduğunu varsayarsak, çekirdeğin kaynak kodunu indirip, istediğimiz değişiklikleri yaptıktan sonra çekirdeği yeniden derleyebiliriz.
 
-Fakat bu yöntem için yaptığımız değişikliklerin çekirdeğin geri kalanıyla uyumlu olduğuna ve sistemin kararlı bir şekilde çalışmaya devam ettiğine emin olmamız gerekir, zira çekirdekteki ın **kernel panic**'e sebep olma ihtimali vardır.
+Fakat bu yöntem için yaptığımız değişikliklerin çekirdeğin geri kalanıyla uyumlu olduğuna ve sistemin kararlı bir şekilde çalışmaya devam ettiğine emin olmamız gerekir, zira çekirdekteki herhangi bir hatanın **kernel panic**'e sebep olma ihtimali vardır.
 
 Çekirdeğin paniklediği bir senaryoda tüm sistem de çekirdek ile beraber çöker.
 
@@ -508,7 +508,7 @@ slides:
 ---
 ::
 
-Yukarıda, dünyadaki bütün web sitelerinin yaklaşık 20.9%'unun [[7]](#ref-7) DDoS saldırılarına karşı korunmak için kullandığı Cloudflare'ın 2018 yılında yayınladığı bir çalışmanın [[8]](#ref-8) sonuçlarını görüyoruz.
+Yukarıda, dünyadaki bütün web sitelerinin yaklaşık 20.9%'unun [[7]](#ref-7) DDoS saldırılarına karşı korunmak için kullandığı Cloudflare'in 2018 yılında yayınladığı bir çalışmanın [[8]](#ref-8) sonuçlarını görüyoruz.
 
 İlk görseldeki sonuçlar, iptables ve nftables kullanılarak yapılan paket filtreleme işlemlerinin performansını gösteriyor.
 
