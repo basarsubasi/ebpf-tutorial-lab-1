@@ -34,6 +34,8 @@ Bu lab'de kaputu biraz aralayıp, altında çalışan mekanizmalara göz attıkt
 
 Lab ortamına özel hazırlanmış VM'lere "Start" butonuna tıklayarak erişebilirsiniz. VM'ler için IDE ve Terminal'ler de bu şekilde açılacaktır.
 
+VM'lerde ihtiyacımız olan header dosyalarını barındıran bir eBPF klasörü mevcut, eBPF kodlarımızı bu klasörün içinde, header dosyalarını dahil ederek yazacağız.
+
 ## Çekirdek (Kernel) nedir?
 
 ::image-box
