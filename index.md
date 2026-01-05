@@ -132,7 +132,7 @@ strace -c ./hello_world
 :summary: Çıktıyı gördükten sonra buraya tıklayın
 ---
 
-Tahmininiz ne kadar doğru çıktı? Bu kadar basit bir işlem için bile kernel ile ne kadar çok etkileşime geçtiyoruz, ama bunun farkında bile değiliz!
+Tahmininiz ne kadar doğru çıktı? Bu kadar basit bir işlem için bile kernel ile tam 34 kere ping pong oynuyoruz, ama bunun farkında bile değiliz!
 ::
 
 ::
