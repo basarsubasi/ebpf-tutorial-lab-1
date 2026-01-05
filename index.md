@@ -16,7 +16,7 @@ tagz:
 - iptables
 
 createdAt: 2026-01-04
-updatedAt: 2026-01-04
+updatedAt: 2026-01-05
 
 cover: __static__/cover1.png
 
@@ -281,7 +281,7 @@ kind: warning
 
 Lab ortamındaki VM'lerde `bpftool` halihazırda mevcut olduğu için bpf işlemlerimizi `bpftool` ile yapacağız.
 
-`bpftool`, eBPF programlarını ve objelerini (maps, programs, links vb.) yönetmek için kullanılan resmi bir komut satırı aracıdır. Linux çekirdeği ile birlikte gelir ve eBPF programlarını yükleme, listeleme, denetleme ve hata ayıklama için kullanılır.
+`bpftool`, eBPF programlarını ve objelerini (maps, programs, links vb.) yönetmek için kullanılan  bir komut satırı aracıdır. eBPF programlarını yükleme, listeleme, denetleme ve hata ayıklama için kullanılır.
 
 **Temel kullanım alanları:**
 - eBPF programlarını yükleme ve kaldırma
@@ -518,9 +518,9 @@ iptables, kendi paket filtreleme sınırlarını PREROUTING zincirinde zorlamas�
 
 İkinci görselde ise XDP kullanılarak yapılan paket filtreleme işlemlerinin performansını görüyoruz. XDP, offload modunda iken aynı donanım üzerinde ortalama 10 milyon paket/saniye (10 Mpps) seviyelerine kadar çıkabiliyor.
 
-Bu sonuçlar, XDP'nin (offload modunda) iptables'a kıyasla yaklaşık 6 kat daha yüksek performans sunduğunu gösteriyor. Bu da, yüksek trafikli ağlarda paket filtreleme işlemleri için XDP'nin iptables'a kıyasla ideal bir çözüm olduğunu ortaya koyuyor.
+Bu sonuçlar, XDP'nin (offload modunda) iptables'a kıyasla yaklaşık 6 kat daha yüksek performans sunduğunu gösteriyor. Bu durumda da, yüksek trafikli ağlarda paket filtreleme işlemleri için XDP'nin iptables'a kıyasla ideal bir çözüm olduğunu görmek çok zor değil
 
-Cloudflare, Meta veya Netflix gibi hyperscaler şirketlerin yanı sıra Kubernetes ekosisteminde de Cilium gibi eBPF/XDP tabanlı çözümler giderek daha popüler hale geliyor.
+Cloudflare, Meta veya Netflix gibi hyperscaler şirketlerin yanı sıra Kubernetes ekosisteminde de Cilium gibi eBPF/XDP tabanlı çözümler giderek daha popüler hale geliyor, gelecek ne gösterecek hep birlikte göreceğiz.
 
 
 ## Kaynakça
