@@ -52,7 +52,7 @@ Lab ortamına özel hazırlanmış VM'lere "Start" butonuna tıklayarak erişebi
 
 Bununla birlikte, çekirdek donanım ile yazılım arasında bir köprü görevi görür. Donanım kaynaklarını yönetir ve uygulamaların bu kaynaklara erişimini sağlar.
 
-Çekirdekğin kendisi hariç bilgisayarda çalışan tüm programlara kullanıcı alanı (userspace) programları denir. Günlük hayatta somut olarak etkileşime geçtiğimiz çoğu uygulama (web tarayıcıları, ofis programları, oyunlar vb.) kullanıcı alanı (userspace) programlarıdır.
+Çekirdeğin kendisi hariç bilgisayarda çalışan tüm programlara kullanıcı alanı (userspace) programları denir. Günlük hayatta somut olarak etkileşime geçtiğimiz çoğu uygulama (web tarayıcıları, ofis programları, oyunlar vb.) kullanıcı alanı (userspace) programlarıdır.
 
 ::image-box
 ---
@@ -156,7 +156,7 @@ _Linux çekirdek kaynak kodu [[3]](#ref-3)_
 
 Değiştirmek istediğimiz çekirdeğin Linux olduğunu varsayarsak, çekirdeğin kaynak kodunu indirip, istediğimiz değişiklikleri yaptıktan sonra çekirdeği yeniden derleyebiliriz.
 
-Fakat bu yöntem için yaptığımız değişikliklerin çekirdeğin geri kalanıyla uyumlu olduğuna ve sistemin kararlı bir şekilde çalışmaya devam ettiğine emin olmamız gerekir, zira çekirdektekteki hatalar **kernel panic**'e sebep olur ve tüm sistem çekirdek ile beraber çöker.
+Fakat bu yöntem için yaptığımız değişikliklerin çekirdeğin geri kalanıyla uyumlu olduğuna ve sistemin kararlı bir şekilde çalışmaya devam ettiğine emin olmamız gerekir, zira çekirdekteki hatalar **kernel panic**'e sebep olur ve tüm sistem çekirdek ile beraber çöker.
 
 Bütün bunlara ilaveten, her yeni iterasyon için çekirdeği yeniden derlemek ve sistemi yeniden başlatmak gerektiği için bu yöntem oldukça zahmetlidir.
 ::
@@ -304,7 +304,7 @@ _eBPF programımızın çekirdek içindeki lokasyonu [[5]](#ref-5)_
 ::
 
 
-Bu program çalıştırıldığında, onu çalıştıran **process**'i ve çalıştırılmaya çalışılan programı PID'si ile berabler görebileceksiniz. Örneğin, bir terminal açtığınızda veya bir komut çalıştırdığınızda, bu eBPF programı bu olayı yakalayacak ve olay ile ilgili detayları konsolda görüntüleyecektir.
+Bu program çalıştırıldığında, onu çalıştıran **process**'i ve çalıştırılmaya çalışılan programı PID'si ile beraber görebileceksiniz. Örneğin, bir terminal açtığınızda veya bir komut çalıştırdığınızda, bu eBPF programı bu olayı yakalayacak ve olay ile ilgili detayları konsolda görüntüleyecektir.
 
 Bu basit örnek, bize eBPF'in temel işlevini canlı bir şekilde gösteriyor, çekirdeği yeniden derlemeden, sistemde yapılan işlemleri sistem çağrısı seviyesinde, direkt olarak çekirdeğin içinden izleyebiliyoruz!
 ::
@@ -352,7 +352,7 @@ sudo iptables -D INPUT 1
 _Koyduğumuz iptables kuralının çekirdek içindeki konumu_
 ::
 
- İptables, çekirdeğin **Netfilter** adlı modülünü kullanarak ağ trafiğini kontrol eder, iptables aslında çekirdeğin içindeki bu modülün userspace arayüzüdür. Asıl paket filtreleme işlemi netfilter katmanında, netfilter hook'ları aracılığıyla gerçekleşir.
+ iptables, çekirdeğin **Netfilter** adlı modülünü kullanarak ağ trafiğini kontrol eder, iptables aslında çekirdeğin içindeki bu modülün userspace arayüzüdür. Asıl paket filtreleme işlemi netfilter katmanında, netfilter hook'ları aracılığıyla gerçekleşir.
 
 
 ::image-box
@@ -485,7 +485,7 @@ Yukarıda, dünyadaki bütün web sitelerinin yaklaşık 20.9%'unun [[7]](#ref-7
 
 İlk görseldeki sonuçlar, iptables ve nftables kullanılarak yapılan paket filtreleme işlemlerinin performansını gösteriyor.
 
-(TC BPF sonuçları da benzer seviyelerde, fakat kapsamımıza dahil olamdığı için onu şimdilik görmezden gelebiliriz) 
+(TC BPF sonuçları da benzer seviyelerde, fakat kapsamımıza dahil olmadığı için onu şimdilik görmezden gelebiliriz) 
 
 iptables, kendi paket filtreleme sınırlarını PREROUTING zincirinde zorlamasına rağmen ortalama 1.7 milyon paket/saniye (1.7 Mpps) seviyelerinde kalıyor.
 
