@@ -115,7 +115,13 @@ Programı `clang` kullanarak derlemek için:
 clang hello_world.c -o hello_world
 ```
 
-Programınızı derledikten ve tahmininizi yaptıktan sonra, aşağıdaki komutu kullanarak bu programın ekrana "Hello, World!" yazdırmak için yaptığı sistem çağrılarını sayabilirsiniz:
+Programı çalıştırmak için:
+
+```bash
+./hello_world
+```
+
+Programınızı derledikten, çalıştığına emin olduktan ve tahmininizi yaptıktan sonra, aşağıdaki komutu kullanarak bu programın ekrana "Hello, World!" yazdırmak için yaptığı sistem çağrılarını sayabilirsiniz:
 
 ```bash
 strace -c ./hello_world
