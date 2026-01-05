@@ -112,7 +112,7 @@ int main() {
 Programı `clang` kullanarak derlemek için:
 
 ```bash
-clang -c hello_world.c -o hello_world
+clang hello_world.c -o hello_world
 ```
 
 Programınızı derledikten ve tahmininizi yaptıktan sonra, aşağıdaki komutu kullanarak bu programın ekrana "Hello, World!" yazdırmak için yaptığı sistem çağrılarını sayabilirsiniz:
