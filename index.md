@@ -245,7 +245,7 @@ int handle_execve(struct trace_event_raw_sys_enter *ctx) {
 }
 ```
 
-Programı derlemek için:
+**Programı derlemek için:**
 
 ```bash
 # eBPF programını derleyin
@@ -272,7 +272,7 @@ Lab ortamındaki VM'lerde `bpftool` halihazırda mevcut olduğu için bpf işlem
 
 ::
 
-Programı yüklemek ve otomatik olarak yerine takmak için:
+**Programı yüklemek ve otomatik olarak yerine takmak için:**
 
 ```bash
 # eBPF programını yükleyin ve otomatik olarak yerine takın
@@ -286,7 +286,7 @@ Program çalışırken başka bir terminalde komutlar çalıştırarak execve ç
 sudo cat /sys/kernel/debug/tracing/trace_pipe
 ```
 
-Programı silmek/durdurmak için:
+**Programı silmek/durdurmak için:**
 
 ```sh
 sudo rm /sys/fs/bpf/execve_monitor
@@ -355,15 +355,20 @@ _Koyduğumuz iptables kuralının çekirdek içindeki konumu_
  iptables, çekirdeğin **Netfilter** adlı modülünü kullanarak ağ trafiğini kontrol eder, iptables aslında çekirdeğin içindeki bu modülün userspace arayüzüdür. Asıl paket filtreleme işlemi netfilter katmanında, netfilter hook'ları aracılığıyla gerçekleşir.
 
 
+::remark-box
+---
+kind: warning
+---
 ::image-box
 ---
 :src: __static__/iptables-stages-white.png
+alt: 'iptables zincirleri'
 :max-width: 600px
+_iptables zincirleri_
+
 ---
 
- iptables ile ilgili daha detaylı bilgi ve yukarıdaki gibi iyi çizilmiş diyagramlar için bu platformun da yaratıcısı olan Ivan'ın Layman's iptables[[6]](#ref-6) bloguna göz atmanızı öneririm.
-::
-
+ iptables ile ilgili daha detaylı bilgi ve yukarıdaki gibi iyi çizilmiş diyagramlar için bu platformun da yaratıcısı olan Ivan'ın Layman's iptables [[6]](#ref-6) bloguna göz atmanızı öneririm.
 ::
 
 ::details-box
