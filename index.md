@@ -187,6 +187,18 @@ Fakat çekirdek modüllerinin de bazı dezavantajları vardır. Bu dezavantajlar
 
 ## eBPF
 
+
+::image-box
+---
+:src: __static__/verifier.png
+:alt: 'eBPF Verifier (Doğrulayıcı) mimarisi'
+:max-width: 600px
+---
+
+_eBPF mimarisi (Kaynak: [[5]](#ref-5))_
+::
+
+
 eBPF, çekirdeğin direkt olarak içerisinde bulunan ve çekirdeği yeniden derlemeye gerek kalmadan, çekirdeğin işleyişini değiştirmemize olanak sağlayan bir **çekirdek içi sanal makinedir** (in-kernel virtual machine).
 
 eBPF ayrıca içindeki **Verifier** (doğrulayıcı) sayesinde, yüklenen eBPF programlarının güvenli olduğunu ve çekirdeği çökertmeyeceğini garanti eder.
@@ -486,7 +498,7 @@ slides:
 ---
 ::
 
-Yukarıda, dünyadaki bütün web sitelerinin yaklaşık 20.9%'unun [[7]](#ref-7) DDoS saldırılarına karşı korunmak için kullandığı Cloudflare'ın 2020 yılında yayınladığı bir çalışmanın [[8]](#ref-8) sonuçlarını görüyoruz.
+Yukarıda, dünyadaki bütün web sitelerinin yaklaşık 20.9%'unun [[7]](#ref-7) DDoS saldırılarına karşı korunmak için kullandığı Cloudflare'ın 2018 yılında yayınladığı bir çalışmanın [[8]](#ref-8) sonuçlarını görüyoruz.
 
 İlk görseldeki sonuçlar, iptables ve nftables kullanılarak yapılan paket filtreleme işlemlerinin performansını gösteriyor.
 
