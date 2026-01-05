@@ -352,7 +352,7 @@ sudo iptables -A INPUT -s 172.16.0.102 -j DROP
 
 ```bash
 # box-02'den (172.16.0.102) 
-ping 172.16.0.101
+sudo ping 172.16.0.101
 ```
 
 Kural aktif olduğunda ping paketleri hiçbir yanıt almayacaktır.
@@ -461,7 +461,7 @@ sudo bpftool net list
 
 ```bash
 # box-02'den (172.16.0.102) ping atın
-ping 172.16.0.101
+sudo ping 172.16.0.101
 ```
 ```sh
 # XDP loglarını izlemek için
