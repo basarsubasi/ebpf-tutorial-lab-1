@@ -224,8 +224,7 @@ Bu özellikleri sayesinde eBPF, bize çekirdeği değiştirme konusunda geleneks
 :max-width: 600px
 ---
 
-_eBPF hook noktaları
-[[5]](#ref-5)_
+_eBPF hook noktaları (Kaynak: [[5]](#ref-5))_
 ::
 
 eBPF programları, eBPF sanal makinesi üzerinde çalışan küçük, verimli ve güvenli programlardır. Bu programlar, sistem çağrıları dahil çekirdeğin belirli noktalarına bağlanabilir ve bu noktalarda çalıştırılabilirler. 
