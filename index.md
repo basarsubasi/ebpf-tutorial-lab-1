@@ -280,13 +280,13 @@ kind: warning
 
 Lab ortamındaki VM'lerde `bpftool` halihazırda mevcut olduğu için bpf işlemlerimizi `bpftool` ile yapacağız.
 
-`bpftool`, eBPF programlarını ve objelerini (maps, programs, links vb.) yönetmek için kullanılan  bir komut satırı aracıdır. eBPF programlarını yükleme, listeleme, denetleme ve hata ayıklama için kullanılır.
+`bpftool`, eBPF programlarını ve objelerini (map'ler, program'lar, link'ler vb.) yönetmek için kullanılan  bir komut satırı aracıdır. eBPF programlarını yükleme, listeleme, denetleme ve hata ayıklama için kullanılır.
 
 **Temel kullanım alanları:**
-- eBPF programlarını yükleme ve kaldırma
 - Yüklenmiş eBPF programlarını listeleme ve inceleme
-- eBPF programlarını çekirdeğin çeşitli hook noktalarına takma (attach)
 - eBPF objelerini dosya sistemine pin'leme
+- eBPF programlarını yükleme ve kaldırma
+- eBPF programlarını çekirdeğin çeşitli hook noktalarına takma (attach) ve çıkarma (detach)
 
 `bpftool` sayesinde eBPF programlarını manuel olarak yönetebilir ve sistemdeki eBPF aktivitesini izleyebiliriz.
 
