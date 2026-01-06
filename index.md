@@ -529,13 +529,15 @@ slides:
 
 Yukarıda, dünyadaki bütün web sitelerinin yaklaşık 20.9%'unun [[7]](#ref-7) DDoS saldırılarına karşı korunmak için kullandığı Cloudflare'in 2018 yılında yayınladığı bir çalışmanın [[8]](#ref-8) sonuçlarını görüyoruz.
 
+Çalışmada tek bir CPU çekirdeğine saniyede 14 milyon UDP paketi gönderiliyor (14 Mpps) ve çekirdeğin farklı paket filtreleme yöntemleri ile bu paketleri ne kadar hızlı işleyebildiği karşılaştırılmak isteniyor.
+
+
 İlk görseldeki sonuçlar, iptables ve nftables kullanılarak yapılan paket filtreleme işlemlerinin performansını gösteriyor.
+
+iptables, kendi paket filtreleme sınırlarını PREROUTING zincirinde zorlamasına rağmen ortalama 1.7 milyon paket/saniye (1.7 Mpps) seviyelerinde kalıyor.
 
 (TC BPF sonuçları da benzer seviyelerde, fakat kapsamımıza dahil olmadığı için onu şimdilik görmezden gelebiliriz) 
 
-Çalışmada tek bir CPU çekirdeğine saniyede 14 milyon UDP paketi gönderiliyor (14 Mpps) ve çekirdeğin farklı paket filtreleme yöntemleri ile bu paketleri ne kadar hızlı işleyebildiği karşılaştırılmak isteniyor.
-
-iptables, kendi paket filtreleme sınırlarını PREROUTING zincirinde zorlamasına rağmen ortalama 1.7 milyon paket/saniye (1.7 Mpps) seviyelerinde kalıyor.
 
 İkinci görselde ise XDP kullanılarak yapılan paket filtreleme işlemlerinin performansını görüyoruz. XDP, offload modunda iken aynı donanım üzerinde ortalama 10 milyon paket/saniye (10 Mpps) seviyelerine kadar çıkabiliyor.
 
