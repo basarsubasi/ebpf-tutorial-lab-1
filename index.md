@@ -497,7 +497,7 @@ XDP programları gelen paketin herhangi bir bölümüne erişebilir ve onu deği
 
 Eğer paketin header'ında bulunan kaynak IP adresi düşürülmek istenen IP adresi ile eşleşiyorsa, program paketi düşürüyor ( _XDP_DROP_ ).
 
-Eşleşme olmaması durumunda ise paket XDP programı orada hiç yokmuş gibi, çekirdeğin network stack'indeki yolcuğuna devam ediyor ( _XDP_PASS_ ).
+Eşleşme olmaması durumunda ise paket, XDP programı orada hiç yokmuş gibi, çekirdeğin network stack'indeki yolcuğuna devam ediyor ( _XDP_PASS_ ).
 
 ::image-box
 ---
@@ -532,6 +532,8 @@ Yukarıda, dünyadaki bütün web sitelerinin yaklaşık 20.9%'unun [[7]](#ref-7
 İlk görseldeki sonuçlar, iptables ve nftables kullanılarak yapılan paket filtreleme işlemlerinin performansını gösteriyor.
 
 (TC BPF sonuçları da benzer seviyelerde, fakat kapsamımıza dahil olmadığı için onu şimdilik görmezden gelebiliriz) 
+
+Çalışmada tek bir CPU çekirdeğine saniyede 14 milyon UDP paketi gönderiliyor (14 Mpps) ve çekirdeğin farklı paket filtreleme yöntemleri ile bu paketleri ne kadar hızlı işleyebildiği karşılaştırılmak isteniyor.
 
 iptables, kendi paket filtreleme sınırlarını PREROUTING zincirinde zorlamasına rağmen ortalama 1.7 milyon paket/saniye (1.7 Mpps) seviyelerinde kalıyor.
 
