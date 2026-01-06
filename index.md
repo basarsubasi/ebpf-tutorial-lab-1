@@ -536,9 +536,9 @@ Yukarıda, dünyadaki bütün web sitelerinin yaklaşık 20.9%'unun [[7]](#ref-7
 
 iptables, kendi paket filtreleme sınırlarını PREROUTING zincirinde zorlamasına rağmen ortalama 1.7 milyon paket/saniye (1.7 Mpps) seviyelerinde kalıyor.
 
-İkinci görselde ise XDP kullanılarak yapılan paket filtreleme işlemlerinin performansını görüyoruz. XDP, offload modunda iken aynı donanım üzerinde ortalama 10 milyon paket/saniye (10 Mpps) seviyelerine kadar çıkabiliyor.
+İkinci görselde ise XDP kullanılarak yapılan paket filtreleme işlemlerinin performansını görüyoruz. XDP, Native modunda iken aynı donanım üzerinde ortalama 10 milyon paket/saniye (10 Mpps) seviyelerine kadar çıkabiliyor.
 
-Bu sonuçlar, XDP'nin (offload modunda) iptables'a kıyasla yaklaşık 6 kat daha yüksek performans sunduğunu gösteriyor. Bu durumda da, yüksek trafikli ağlarda paket filtreleme işlemleri için XDP'nin iptables'a kıyasla ideal bir çözüm olduğunu görmek çok zor değil.
+Bu sonuçlar, XDP'nin (native modunda) iptables'a kıyasla yaklaşık 6 kat daha yüksek performans sunduğunu gösteriyor. Bu durumda da, yüksek trafikli ağlarda paket filtreleme işlemleri için XDP'nin iptables'a kıyasla ideal bir çözüm olduğunu görmek çok zor değil.
 
 Cloudflare, Meta veya Netflix gibi hyperscaler şirketlerin yanı sıra Kubernetes ekosisteminde de Cilium gibi eBPF/XDP tabanlı çözümler giderek daha popüler hale geliyor, gelecek ne gösterecek hep birlikte göreceğiz.
 
