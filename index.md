@@ -317,7 +317,7 @@ sudo rm /sys/fs/bpf/execve_monitor
 
 ::image-box
 ---
-:src: __static__/bpflocation1.jpg
+:src: __static__/bpflocation.png
 :max-width: 600px
 ---
 
