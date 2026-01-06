@@ -16,7 +16,7 @@ tagz:
 - iptables
 
 createdAt: 2026-01-04
-updatedAt: 2026-01-05
+updatedAt: 2026-01-06
 
 cover: __static__/cover1.png
 
@@ -227,7 +227,8 @@ Bu özellikleri sayesinde eBPF, bize çekirdeği değiştirme konusunda geleneks
 _eBPF hook noktaları (Kaynak: [[5]](#ref-5))_
 ::
 
-eBPF programları, eBPF sanal makinesi üzerinde çalışan küçük, verimli ve güvenli programlardır. Bu programlar, sistem çağrıları dahil çekirdeğin belirli noktalarına bağlanabilir ve bu noktalarda çalıştırılabilirler. 
+eBPF programları, eBPF sanal makinesi üzerinde çalışan küçük, verimli ve güvenli programlardır. Genelde programlar çekirdekte 
+üzerinde çalışan katmana göre (TC, cgroups, uprobes vb.) isimlendirilirler. Bu programlar, sistem çağrıları dahil çekirdeğin belirli noktalarına takılabilir ve bu noktalarda çalıştırılabilirler. 
 
 eBPF programları direkt çekirdeğin içine gömülü oldukları için, klasik userspace programlarına kıyasla çok daha yüksek performans sunar ve sistem kaynaklarını daha verimli bir şekilde kullanırlar.
 
@@ -333,7 +334,7 @@ Bu basit örnek, bize eBPF'in temel işlevini canlı bir şekilde gösteriyor, �
 
 ## XDP
 
-eBPF'in en yaygın ve efektif kullanım alanlarından biri de XDP (eXpress Data Path) programları ile ağ paketlerini işleme yeteneğidir. XDP, ağ paketlerini çekirdek seviyesinde işleyerek, `iptables` gibi araçlara kıyasla çok daha yüksek performans sunar.
+eBPF'in en yaygın ve efektif kullanım alanlarından biri de XDP (eXpress Data Path) programları ile ağ paketlerini işleme yeteneğidir. XDP, eBPF sanal makinesinde çalışan program türlerinden sadece birisidir. XDP, ağ paketlerini çekirdek seviyesinde işleyerek, `iptables` gibi araçlara kıyasla çok daha yüksek performans sunar.
 
 ::details-box
 ---
@@ -479,6 +480,25 @@ sudo rm /sys/fs/bpf/xdp_drop
 ```
 
 **Burada ne oluyor?**
+
+
+
+::image-box
+---
+:src: __static__/IPv4_Packet-en.png
+:alt: 'IPv4 paket header yapısı'
+:max-width: 600px
+---
+
+_IPv4 paket header yapısı (Kaynak: [[9]](#ref-9))_
+::
+
+XDP programları gelen paketin herhangi bir bölümüne erişebilir ve onu değiştirebilir. Bizim örneğimizde, (eğer paket bir IP paketi ise) program gelen paketin IP header'ında bulunan kaynak IP adresini okuyarak bu adresin düşürülmek istenen IP adresi olup olmadığını kontrol ediyor. 
+
+Eğer paketin header'ında bulunan kaynak IP adresi düşürülmek istenen IP adresi ile eşleşiyorsa, program paketi düşürüyor ( _XDP_DROP_ ).
+
+Eşleşme olmaması durumunda ise paket XDP programı orada hiç yokmuş gibi, çekirdeğin network stack'indeki yolcuğuna devam ediyor ( _XDP_PASS_ ).
+
 ::image-box
 ---
 :src: __static__/xdp.png
@@ -532,7 +552,7 @@ Cloudflare, Meta veya Netflix gibi hyperscaler şirketlerin yanı sıra Kubernet
 6. <a id="ref-6"></a> [ Ivan's Layman's iptables Blogpost](https://iximiuz.com/en/posts/laymans-iptables-101/)
 7. <a id="ref-7"></a> [W3Techs - Usage Statistics of Cloudflare](https://w3techs.com/technologies/details/cn-cloudflare)
 8. <a id="ref-8"></a> [Cloudflare Blog - How to Drop 10 Million Packets](https://blog.cloudflare.com/how-to-drop-10-million-packets/)
-
+9. <a id="ref-9"></a> [Wikipedia - IPv4](https://en.wikipedia.org/wiki/IPv4)
 
 
 
